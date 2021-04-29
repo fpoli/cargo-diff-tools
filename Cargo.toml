@@ -1,0 +1,23 @@
+[package]
+name = "cargo-diff-tools"
+version = "0.1.0"
+authors = ["Federico Poli <federpoli@gmail.com>"]
+license = "MIT OR Apache-2.0"
+description = "A tool to hide warning messages reported on source code lines that are not part of a `git diff`"
+readme = "README.md"
+homepage = "https://github.com/fpoli/cargo-diff-tools"
+repository = "https://github.com/fpoli/cargo-diff-tools"
+keywords = ["cli", "cargo", "clippy", "git",  "diagnostics"]
+categories = ["command-line-utilities"]
+edition = "2018"
+
+[dependencies]
+regex = "1.4.6"
+lazy_static = "1.4.0"
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+clap = "2.33"
+
+[dev-dependencies]
+indoc = "1.0"
