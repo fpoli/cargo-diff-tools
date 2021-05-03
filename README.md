@@ -48,7 +48,7 @@ To display diagnostics as [workflow commands in GitHub Actions](https://docs.git
 
 ```bash
 git fetch origin $GITHUB_BASE_REF --depth=1
-cargo-clippy-diff --output=github origin/$GITHUB_BASE_REF..
+cargo-clippy-diff --output=github $(git merge-base origin/$GITHUB_BASE_REF $GITHUB_SHA) $GITHUB_SHA
 # Example output "::warning file=lib.rs,line=4,col=2::Missing semicolon"
 ```
 
