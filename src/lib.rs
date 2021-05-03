@@ -89,9 +89,18 @@ pub fn build_app(binary_name: &str, subcommand: Option<(&str, &[&str])>) -> Resu
     if let Some((subcommand_name, subcommand_args)) = subcommand {
         let output_kind = value_t!(matches, "output", OutputKind).unwrap_or(OutputKind::Rendered);
 
+        let json_arg = if matches!(output_kind, OutputKind::GitHub) {
+            // Colorless
+            "--message-format=json"
+        } else {
+            // Colored
+            "--message-format=json-diagnostic-rendered-ansi"
+        };
+
         // Spawn the subprocess
         let mut child = Command::new(subcommand_name)
             .args(subcommand_args)
+            .arg(json_arg)
             .args(&subcommand_extra_args)
             .stdout(Stdio::piped()) // filter stdout
             .stderr(Stdio::inherit()) // do not filter stderr
