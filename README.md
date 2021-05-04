@@ -4,6 +4,12 @@ Run `cargo check` and `cargo clippy` hiding the warning messages whose primary l
 
 Inspired by [`Patryk27/clippy-dirty`](https://github.com/Patryk27/clippy-dirty).
 
+## Install
+
+```bash
+cargo install cargo-diff-tools
+```
+
 ## Examples
 
 Run `cargo clippy` hiding the warning messages whose primary line is not included in a `git origin/master HEAD`:
