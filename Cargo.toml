@@ -1,6 +1,6 @@
 [package]
 name = "cargo-diff-tools"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Federico Poli <federpoli@gmail.com>"]
 license = "MIT OR Apache-2.0"
 description = "A tool to hide warning messages reported on source code lines that are not part of a `git diff`"

@@ -21,7 +21,7 @@ pub fn intersect_intervals(start: usize, end: usize, intervals: &[(usize, usize)
                 }
                 // The last interval starts and ends before `start`.
                 debug_assert!(last_start + last_len - 1 < start);
-                true
+                false
             } else {
                 // No interval starts before `end`.
                 false

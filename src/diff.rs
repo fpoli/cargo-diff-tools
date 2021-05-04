@@ -61,7 +61,7 @@ mod tests {
     use indoc::indoc;
 
     #[test]
-    fn test_parse_diff_clean() {
+    fn test_parse_diff_1() {
         let diff = indoc! {"
             +++ b/Cargo.lock
             @@ -3,0 +4,9 @@
@@ -79,5 +79,17 @@ mod tests {
         assert_eq!(&file_changes["Cargo.lock"], &[(4, 9), (15, 26)]);
         assert_eq!(&file_changes["Cargo.toml"], &[(10, 1)]);
         assert_eq!(&file_changes["src/main.rs"], &[(3, 3), (11, 1), (16, 15)]);
+    }
+
+    #[test]
+    fn test_parse_diff_2() {
+        let diff = indoc! {"
+            +++ b/prusti-viper/src/encoder/mir_encoder/mod.rs
+            @@ -98,5 +98,5 @@
+        "};
+        let file_changes = parse_diff(diff).unwrap();
+        eprintln!("{:?}", file_changes);
+        assert_eq!(file_changes.len(), 1);
+        assert_eq!(&file_changes["prusti-viper/src/encoder/mir_encoder/mod.rs"], &[(98, 5)]);
     }
 }
