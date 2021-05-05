@@ -53,11 +53,7 @@ cargo-clippy-diff --output=json origin/master HEAD
 To display diagnostics as [workflow commands in GitHub Actions](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-a-warning-message) (useful to automatically add comments to pull requests), use `--output=github`:
 
 ```bash
-git fetch origin "$GITHUB_BASE_REF"
-HEAD_REPO="${{ github.event.pull_request.head.repo.full_name }}"
-git fetch "$HEAD_REPO" "$GITHUB_HEAD_REF"
-FULL_HEAD_REF="$HEAD_REPO/$GITHUB_HEAD_REF"
-cargo-clippy-diff --output=github $(git merge-base "origin/$GITHUB_BASE_REF" "$FULL_HEAD_REF") "$FULL_HEAD_REF"
+cargo-clippy-diff --output=github $(git merge-base $PR_BASE_SHA $PR_HEAD_SHA) $PR_HEAD_SHA
 # Example output "::warning file=lib.rs,line=4,col=2::Missing semicolon"
 ```
 
